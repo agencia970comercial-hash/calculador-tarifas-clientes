@@ -719,5 +719,17 @@ function initEnergyRate(){
 initEnergyRate();
 loadData();
 </script>
-</body>
+
+<script>
+  window.addEventListener('load', function() {
+    if (window.performance && window.performance.navigation.type === 0) {
+      const currentUrl = new URL(window.location.href);
+      if (!currentUrl.searchParams.has('reload')) {
+        currentUrl.searchParams.set('reload', Date.now());
+        window.location.replace(currentUrl.toString());
+      }
+    }
+  });
+</script>
+
 </html>
